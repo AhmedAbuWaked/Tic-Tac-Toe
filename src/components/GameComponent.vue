@@ -31,6 +31,7 @@
       | : {{ counto }}
 
     table.tb(border="1")
+      .stop
       tr
         td(data-index1="0", data-index2="0", @click="storageData")
         td(data-index1="0", data-index2="1", @click="storageData")
@@ -103,8 +104,8 @@ export default {
       this.winner = "";
       document.querySelectorAll("td").forEach((el) => {
         el.innerText = "";
-        el.classList.remove("cursor");
       });
+      document.querySelector(".stop").classList.remove("overlay");
     },
     withChange: function () {
       document.querySelector(".game").classList.remove("show");
@@ -122,8 +123,8 @@ export default {
       this.winner = "";
       document.querySelectorAll("td").forEach((el) => {
         el.innerText = "";
-        el.classList.remove("cursor");
       });
+      document.querySelector(".stop").classList.remove("overlay");
     },
     playAgain: function () {
       this.board = [
@@ -134,8 +135,8 @@ export default {
       this.winner = "";
       document.querySelectorAll("td").forEach((el) => {
         el.innerText = "";
-        el.classList.remove("cursor");
       });
+      document.querySelector(".stop").classList.remove("overlay");
     },
     storageData: function (e) {
       if (this.board[e.target.dataset.index1][e.target.dataset.index2] === 0) {
@@ -190,9 +191,7 @@ export default {
         alert(this.winner);
       }
       if (this.winner !== "") {
-        document.querySelectorAll("td").forEach(event, (el) => {
-          el.classList.add("cursor");
-        });
+        document.querySelector(".stop").classList.add("overlay");
       }
     },
   },
